@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Каталог объявлений</h2>
+        <small>Актуальные объявления</small>
+    </div>
+    <form>
+        <div class="form-group index-search">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input type="text" class="form-control" placeholder="Поиск" ng-model="searchAd">
+            </div>
+        </div>
+    </form>
+    <div ng-show="ads.length > 0">
+        <div id="no-more-tables">
+            <table class="col-md-12 table table-hover cf">
+                <thead class="cf">
+                    <tr>
+                        <th class="numeric">
+                            <a href ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                                Название
+                                <span class="glyphicon glyphicon-menu-down" ng-show="sortType == 'title' && !sortReverse"></span>
+                                <span class="glyphicon glyphicon-menu-up" ng-show="sortType == 'title' && sortReverse"></span>
+                            </a>
+                        </th>
+                        <th class="numeric">
+                            <a href ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                                Описание
+                                <span class="glyphicon glyphicon-menu-down" ng-show="sortType == 'description' && !sortReverse"></span>
+                                <span class="glyphicon glyphicon-menu-up" ng-show="sortType == 'description' && sortReverse"></span>
+                            </a>
+                        </th>
+                        <th class="numeric">
+                            <a href ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                Имя
+                                <span class="glyphicon glyphicon-menu-down" ng-show="sortType == 'name' && !sortReverse"></span>
+                                <span class="glyphicon glyphicon-menu-up" ng-show="sortType == 'name' && sortReverse"></span>
+                            </a>
+                        </th>
+                        <th class="numeric">
+                            <a href ng-click="sortType = 'price'; sortReverse = !sortReverse">
+                                Цена
+                                <span class="glyphicon glyphicon-menu-down" ng-show="sortType == 'price' && !sortReverse"></span>
+                                <span class="glyphicon glyphicon-menu-up" ng-show="sortType == 'price' && sortReverse"></span>
+                            </a>
+                        </th>
+                        <th class="numeric">Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in ads | orderBy:sortType:sortReverse | filter: searchAd" ng-class="getTrClass(data.type)">
+                    <td data-title="Название" class="numeric">{{data.title}}</td>
+                    <td data-title="Описание" class="numeric">{{data.description}}</td>
+                    <td data-title="Имя" class="numeric">{{data.name}}</td>
+                    <td data-title="Цена" class="numeric">{{data.price}}</td>
+                    <td data-title="Действие" class="numeric last-td">
+                        <a class="btn btn-success btn-xs" href="#/ad/update/{{data._id}}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <span ng-if="$first && ads.length == 1">
+                            <a class="btn btn-danger btn-xs" ng-click="deleteAd(data._id, 'last')">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </span>
+                        <span ng-if="ads.length > 1">
+                            <a class="btn btn-danger btn-xs" ng-click="deleteAd(data._id)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="ads.length == 0">
+        <h3>Объявлений не найдено</h3>
+        <a class="btn btn-success" href="#/ad/create">
+            <i class="glyphicon glyphicon-plus"></i> Добавить
+        </a>
+    </div>
+</div>

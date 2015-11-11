@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app="adApp">
+<head lang="ru-RU">
+    <meta charset="UTF-8">
+    <title>dealsearch - Каталог частных объявлений</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="css/plugins.min.css" rel="stylesheet">
+    <link href="css/styles.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div ng-include="'views/shared/navbar/navbar.html'"></div>
+
+    <!-- Main Controller -->
+    <div ng-controller="listController">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- View -->
+                    <ng-view></ng-view>
+                </div>
+            </div>
+        </div>
+    </div>
+    <toasty></toasty>
+
+    <!-- Footer -->
+    <div ng-include="'views/shared/footer/footer.html'"></div>
+
+    <!-- JS -->
+    <!-- Others JS Files -->
+    <script src="app/libs/jquery/jquery.min.js"></script>
+    <script src="app/libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="app/libs/bootstrap-material-design/js/material.min.js"></script>
+    <script src="app/libs/bootstrap-material-design/js/ripples.min.js"></script>
+    <script src="app/libs/bootstrap-material-design/js/arrive.js"></script>
+    <!-- AngularJs -->
+    <script src="app/libs/angular/angular.concat.js"></script>
+    <!-- JS App Fies -->
+    <script src="app/app-module.js"></script>
+    <script src="app/app-routes.js"></script>
+    <script src="app/app-services.js"></script>
+    <script src="app/controllers/ad/ad.controller.js"></script>
+
+</body>
+</html>
